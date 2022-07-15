@@ -6,6 +6,8 @@
 
 - Go is good for CPU intensive tasks, but NodeJS is preferred for IO intensive tasks.
 
+- For the NodeJS case, as requests are processed and events are triggered, messages are queued along with their callback functions. The queue is polled for the next message, and when a message is seen, callback for that message is executed. There are issues when there is high traffic, and the API is contacting other 3rd-party APIs, there might be timeouts, and events/messages/callbacks are placed on overloaded queue, and the callbacks are processed one by one. The single-threaded model has its disadvantages, which is why NodeJS has introduced worker threads recently to tackle some of these issues.
+
 - Go required explicit error checking which can lead to carefully-designed, flawless apps, but NodeJS uses the more traditional throw-and-catch model for error handling.
 
 - Go's strength lies in in-built & streamlined concurrency, also the optimized garbage collection and memory management. NodeJS has a non-blocking asynchronous system which makes it seem like multi-threaded but it is not actually that.
